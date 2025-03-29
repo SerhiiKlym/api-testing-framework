@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar - grdl wrapper 4 gh actions
 *.war
 *.nar
 *.ear
