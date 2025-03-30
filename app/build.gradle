@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use TestNG framework, also requires calling test.useTestNG() below
+    testImplementation 'org.testng:testng:7.11.0'
+    testImplementation 'io.rest-assured:rest-assured:5.5.1'
+    testImplementation 'org.hamcrest:hamcrest:3.0'
+
+    implementation 'io.qameta.allure:allure-rest-assured:2.29.1'
+    implementation 'com.github.java-json-tools:json-schema-validator:2.2.14'
+    implementation 'com.google.code.gson:gson:2.12.1'
+    implementation 'io.qameta.allure:allure-testng:2.29.1'
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+}
+
+tasks.named('test') {
+    // Use TestNG for unit tests.
+    useTestNG()
+
+    testLogging {
+        showStandardStreams = true
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
