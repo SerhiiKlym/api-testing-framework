@@ -1,5 +1,6 @@
-package com.sk.apitests.base;
+package com.sk.apitests.tests.connection;
 
+import com.sk.apitests.base.Specs;
 import io.qameta.allure.testng.AllureTestNg;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
