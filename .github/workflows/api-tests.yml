@@ -25,3 +25,30 @@ jobs:
 
       - name: Run API tests
         run: ./gradlew test
+
+      - name: Install Allure CLI
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          tar -zxvf allure-2.27.0.tgz
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          allure --version
+
+      - name: List contents of allure-results
+        run: ls -la app/build/allure-results
+
+      - name: Generate Allure Report via Gradle
+        run: ./gradlew allureReport
+
+      - name: List contents of allureReport
+        run: ls -la app/build/reports/allure-report/allureReport
+
+      - name: List Allure report content
+        run: ls -R app/build/reports/allure-report/allureReport
+
+      - name: Upload Allure HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: app/build/reports/allure-report/allureReport
+          if-no-files-found: error

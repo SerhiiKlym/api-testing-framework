@@ -27,4 +27,7 @@ GET	/comments?postId=1
 POST /posts  
 PUT	/posts/1  
 PATCH	/posts/1  
-DELETE	/posts/1  
+DELETE	/posts/1 
+
+###### Viewing downloaded report from GitHub Actions locally:
+###### python -m http.server port

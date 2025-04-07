@@ -1,6 +1,5 @@
 package com.sk.apitests.base;
 
-import com.sk.apitests.utils.ConfigReader;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -9,32 +8,27 @@ import io.restassured.specification.ResponseSpecification;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.sk.apitests.base.BaseTest.currentURL;
 import static org.hamcrest.Matchers.lessThan;
 
 
 public class Specs {
 
-    public static RequestSpecification connectionTestRequest = new RequestSpecBuilder()
-            .setBaseUri(ConfigReader.get("base.url"))
+    public static RequestSpecification requestSpecConnectionTest = new RequestSpecBuilder()
+            .setBaseUri(currentURL)
             .setContentType(ContentType.JSON)
-            .setBasePath("/posts")
+            .setBasePath(Endpoints.POSTS)
             .build();
 
-    public static ResponseSpecification connectionTestResponse = new ResponseSpecBuilder()
+    public static ResponseSpecification responseSpecOK = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .expectResponseTime(lessThan(2L), TimeUnit.SECONDS)
             .build();
 
-    public static RequestSpecification userRequest = new RequestSpecBuilder()
-            .setBaseUri(ConfigReader.get("base.url"))
+    public static RequestSpecification requestUserEndpoint = new RequestSpecBuilder()
+            .setBaseUri(currentURL)
             .setContentType(ContentType.JSON)
-            .setBasePath("/users")
+            .setBasePath(Endpoints.USERS)
             .build();
-
-    public static ResponseSpecification userResponse = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .expectResponseTime(lessThan(2L), TimeUnit.SECONDS)
-            .build();
-
 
 }
