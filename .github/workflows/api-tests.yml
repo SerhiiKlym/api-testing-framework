@@ -45,6 +45,9 @@ jobs:
 #      - name: Generate Allure Report
 #        run: |
 #          allure generate app/build/allure-results --clean -o app/build/allure-report
+      - name: List contents of allure-results
+        run: ls -la app/build/allure-results
+
 
       - name: Generate Allure Report via Gradle
         run: ./gradlew allureReport
