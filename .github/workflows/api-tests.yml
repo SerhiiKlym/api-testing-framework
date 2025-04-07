@@ -23,7 +23,8 @@ jobs:
       - name: Grant execute permission to Gradle wrapper
         run: chmod +x ./gradlew
 
-
+      - name: Run API tests
+        run: ./gradlew test
 
       - name: Install Allure CLI
         run: |
@@ -33,21 +34,8 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
           allure --version
 
-#      - name: Install Allure CLI
-#        run: |
-#            sudo apt-add-repository ppa:qameta/allure -y
-#            sudo apt-get update
-#            sudo apt-get install allure -y
-
-      - name: Run API tests
-        run: ./gradlew test
-
-#      - name: Generate Allure Report
-#        run: |
-#          allure generate app/build/allure-results --clean -o app/build/allure-report
       - name: List contents of allure-results
         run: ls -la app/build/allure-results
-
 
       - name: Generate Allure Report via Gradle
         run: ./gradlew allureReport
