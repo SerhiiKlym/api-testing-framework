@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import static com.sk.apitests.base.Specs.requestUserEndpoint;
 import static com.sk.apitests.base.Specs.responseSpecOK;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
 @Listeners({AllureTestNg.class})
@@ -26,6 +27,7 @@ public class UsersEndpointTest extends BaseTest {
         .then()
                 .log().body()
                 .spec(responseSpecOK)
+                .body(matchesJsonSchemaInClasspath("schemas/user-address-schema.json"))
                 .body("id", equalTo(userId))
                 .body("email", equalTo("Sincere@april.biz"));
 
