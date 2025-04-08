@@ -27,7 +27,7 @@ public class UsersEndpointTest extends BaseTest {
         .then()
                 .log().body()
                 .spec(responseSpecOK)
-                .body(matchesJsonSchemaInClasspath("schemas/user-address-schema.json"))
+                .body("address", matchesJsonSchemaInClasspath( "schemas/user-address-schema.json"))
                 .body("id", equalTo(userId))
                 .body("email", equalTo("Sincere@april.biz"));
 
